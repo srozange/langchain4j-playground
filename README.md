@@ -1,4 +1,14 @@
-# langchain4j-playground
+<# langchain4j-playground
+
+run application :
+```shell script
+./mvnw quarkus:dev
+```
+
+Ask a question :
+```shell
+curl -X POST http://localhost:8080/api -H "Content-Type: text/plain" -d "How are you today ?"
+```
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
