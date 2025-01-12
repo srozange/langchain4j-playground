@@ -1,3 +1,6 @@
+easy-rag-catalog/
+easy-rag-embeddings.json
+
 #Maven
 target/
 pom.xml.tag
