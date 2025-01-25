@@ -26,14 +26,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-        </dependencies>
+            </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <!-- dependency>
             <groupId>io.quarkiverse.langchain4j</groupId>
             <artifactId>quarkus-langchain4j-openai</artifactId>
             <version>0.23.3</version>
+        </dependency -->
+        <!-- pendency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-embeddings-all-minilm-l6-v2</artifactId>
+            <version>1.0.0-alpha1</version>
         </dependency -->
         <dependency>
             <groupId>io.quarkiverse.langchain4j</groupId>
@@ -43,6 +47,11 @@
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-rest</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.langchain4j</groupId>
+            <artifactId>quarkus-langchain4j-qdrant</artifactId>
+            <version>0.23.3</version>
         </dependency>
         <dependency>
             <groupId>io.quarkiverse.langchain4j</groupId>
