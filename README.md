@@ -12,6 +12,8 @@ Ask a question :
 curl -X POST http://localhost:8080/api -H "Content-Type: text/plain" -d "How are you today ?"
 ```
 
+Dashboard QDrant : http://localhost:32778/dashboard  (0.0.0.0:32778->6333/tcp)
+
 ==============================
 
 This project uses Quarkus, the Supersonic Subatomic Java Framework.

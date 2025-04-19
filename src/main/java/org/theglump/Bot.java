@@ -23,10 +23,10 @@ import io.quarkiverse.langchain4j.RegisterAiService;
 public interface Bot {
 
     @SystemMessage("""
-            You are an AI named Bob answering questions about financial products.
+            You are an AI named Jack answering questions about IT.
             Your response must be polite, use the same language as the question, and be relevant to the question.
 
-            When you don't know, respond that you don't know the answer and the bank will contact the customer directly.
+            When you don't know, respond that you don't know the answer and the company will contact the customer directly.
             """)
     String chat(@UserMessage String question);
 }
