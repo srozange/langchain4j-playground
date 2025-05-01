@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  graph-db:
+    image: neo4j:4.4.12
+#    container_name: graph-db
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      - NEO4J_AUTH=neo4j/test
+    volumes:
+      - ./deployment/migration:/import
+    entrypoint: >
+      /bin/bash -c "
+        echo 'Custom entrypoint: Preparing Neo4j...';
+        /docker-entrypoint.sh neo4j &
+
+        until cypher-shell -u neo4j -p \"$${NEO4J_AUTH##*/}\" \"RETURN 1\"; do
+          echo 'Waiting for Neo4j to be ready...';
+          sleep 2;
+        done
+
+        echo 'Running initialization script...';
+        cypher-shell -u neo4j -p \"$${NEO4J_AUTH##*/}\" < /import/load-coffee-data.cypher
+
+        wait
+      "
+    restart: always
+  coffee-app:
+    image: srozange/favorite-coffee:1.0
+ #   container_name: coffee-app
+    depends_on:
+      - graph-db
+    environment:
+      - QUARKUS_NEO4J_URI=bolt://graph-db:7687
+    ports:
+      - "8081:8080"

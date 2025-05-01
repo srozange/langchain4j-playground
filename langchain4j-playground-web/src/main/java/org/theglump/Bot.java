@@ -5,12 +5,12 @@ import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
 
 /**
- * This is a sample Bot, it is configured to ingest the 'easy-rag-catalog/'.
- * You can @Inject this Bot in your Rest resource
+ * This is a sample WebBot, it is configured to ingest the 'easy-rag-catalog/'.
+ * You can @Inject this WebBot in your Rest resource
  *
  * \{@code
  *     @Inject
- *     Bot bot;
+ *     WebBot bot;
  *
  *     @POST
  *     @Produces(MediaType.TEXT_PLAIN)
