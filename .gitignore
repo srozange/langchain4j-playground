@@ -1,5 +1,6 @@
 langchain4j-playground-rag/easy-rag-catalog/
 easy-rag-embeddings.json
+favorite-coffee.log*
 
 #Maven
 target/

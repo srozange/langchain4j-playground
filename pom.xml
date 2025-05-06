@@ -22,6 +22,7 @@
         <module>langchain4j-playground-web</module>
         <module>langchain4j-playground-rag</module>
         <module>langchain4j-playground-mcp-server</module>
+        <module>langchain4j-playground-mcp-client</module>
     </modules>
 
     <dependencyManagement>

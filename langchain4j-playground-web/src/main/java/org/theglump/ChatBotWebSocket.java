@@ -15,7 +15,7 @@ public class ChatBotWebSocket {
 
     @OnOpen
     public String onOpen() {
-        return "Hello, je suis Jack, comment je peux t'aider ?";
+        return "Hello, comment je peux t'aider ?";
     }
 
     @OnTextMessage
