@@ -1,6 +1,6 @@
 # langchain4j-playground-mcp-client
 
-Set mistral ai api key in ```QUARKUS_LANGCHAIN4J_MISTRALAI_API_KEY```
+Set mistral ai api key in ```QUARKUS_LANGCHAIN4J_OPENAI_API_KEY```
 
 Run coffee-app :
 ```bash
