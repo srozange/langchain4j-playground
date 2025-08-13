@@ -8,7 +8,8 @@ export class DemoChat extends LitElement {
         const socket = new WebSocket("ws://" + window.location.host + "/chatbot");
         socket.onmessage = function (event) {
             chatBot.hideAllLoading();
-            chatBot.sendMessage(event.data, {
+            chatBot.sendMessage(null, {
+                message: event.data,
                 right: false,
                 sender: {name: 'Bob', id: '007'}
             });
