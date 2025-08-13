@@ -4,6 +4,11 @@
 
 Put documents to ingest in : easy-rag-catalog/
 
+Start Ollama :
+```shell script
+ollama --serve
+```
+
 Run application :
 ```shell script
 ./mvnw quarkus:dev

@@ -4,24 +4,11 @@ import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
 
-/**
- * \{@code
- *     @Inject
- *     WebBot bot;
- *
- *     @POST
- *     @Produces(MediaType.TEXT_PLAIN)
- *     public String chat(String q) {
- *         return bot.chat(q);
- *     }
- * }
- */
-@RegisterAiService // no need to declare a retrieval augmentor here, it is automatically generated and discovered
+@RegisterAiService(chatMemoryProviderSupplier = RegisterAiService.NoChatMemoryProviderSupplier.class)
 public interface Bot {
 
     @SystemMessage("""
-            Your response must be polite, use the same language as the question, and be relevant to the question.
-            When you don't know, respond that you don't know the answer.
+            Réponds directement et uniquement à la question, sans phrases d’introduction, sans métacommentaires et sans justification. Utilise uniquement la même langue que la question. Si la question est en français, la réponse doit être entièrement en français. Formate toujours la réponse en Markdown.
             """)
     String chat(@UserMessage String question);
 }
