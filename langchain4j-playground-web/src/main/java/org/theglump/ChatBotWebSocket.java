@@ -28,9 +28,13 @@ public class ChatBotWebSocket {
     @OnTextMessage
     public String onMessage(String message) {
         long startTime = System.nanoTime();
-        return convertMarkdownToHtml(bot.chat(message))
+        return convertMarkdownToHtml(bot.chat(sanitized(message)))
                 + "<br>"
                 + getEllapsedTimeAsHtml(startTime);
+    }
+
+    private static String sanitized(String message) {
+        return message.replaceAll("</?p>", "");
     }
 
     private static String convertMarkdownToHtml(String markdown) {
