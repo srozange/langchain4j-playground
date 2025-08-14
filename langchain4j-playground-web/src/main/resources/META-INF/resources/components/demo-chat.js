@@ -5,7 +5,7 @@ export class DemoChat extends LitElement {
     connectedCallback() {
         const chatBot = document.getElementsByTagName("chat-bot")[0];
 
-        const socket = new WebSocket("ws://" + window.location.host + "/chatbot");
+        const socket = new WebSocket("ws://localhost:8080/chatbot");
         socket.onmessage = function (event) {
             chatBot.hideAllLoading();
             chatBot.sendMessage(null, {

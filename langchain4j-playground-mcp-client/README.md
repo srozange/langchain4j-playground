@@ -1,6 +1,6 @@
 # langchain4j-playground-mcp-client
 
-Set mistral ai api key in ```QUARKUS_LANGCHAIN4J_OPENAI_API_KEY```
+Set open ai api key in ```OPENAI_API_KEY```
 
 Run coffee-app :
 ```bash
@@ -8,9 +8,15 @@ cd ../langchain4j-playground-mcp-server/coffee-app
 docker compose up --force-recreate
 ```
 
-Run app : 
+Run backend : 
 ```bash
 mvn quarkus:dev
 ```
 
-Access chatui : http://localhost:8080
+Start web app :
+```shell script
+cd ../langchain4j-playground-web
+./mvnw quarkus:dev
+```
+
+Access chatui : http://localhost:8082

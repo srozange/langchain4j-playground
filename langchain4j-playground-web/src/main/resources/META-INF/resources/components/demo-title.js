@@ -39,7 +39,7 @@ export class DemoTitle extends LitElement {
     render() {
         return html`
             <div class="title">
-                <h1>Hello RAG!</h1>
+                <h1>Hello!</h1>
             </div>
         `
     }
