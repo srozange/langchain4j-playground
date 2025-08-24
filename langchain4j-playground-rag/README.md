@@ -4,11 +4,6 @@
 
 Place documents to ingest in: `easy-rag-catalog/`
 
-Start Ollama (if `quarkus.langchain4j.ollama.base-url` is active):
-```shell script
-ollama serve
-```
-
 Run the backend:
 ```shell script
 ./mvnw quarkus:dev
