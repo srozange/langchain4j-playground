@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <maven.compiler.release>21</maven.compiler.release>
         <compiler-plugin.version>3.14.0</compiler-plugin.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -25,6 +25,7 @@
         <module>langchain4j-playground-mcp-server</module>
         <module>langchain4j-playground-mcp-client</module>
         <module>langchain4j-playground-common</module>
+        <module>langchain4j-playground-a2a</module>
     </modules>
 
     <dependencyManagement>
