@@ -35,9 +35,9 @@
             <artifactId>quarkus-langchain4j-easy-rag</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.commonmark</groupId>
-            <artifactId>commonmark</artifactId>
-            <version>0.25.1</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>langchain4j-playground-common</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
