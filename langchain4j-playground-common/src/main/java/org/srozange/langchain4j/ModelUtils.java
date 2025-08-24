@@ -1,41 +1,44 @@
 package org.srozange.langchain4j;
 
 import org.eclipse.microprofile.config.Config;
-import java.util.Optional;
+
+import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class ModelUtils {
 
+    private static final String[] PROVIDER_MODEL_KEYS = {
+            "quarkus.langchain4j.openai.chat-model.model-name",
+            "quarkus.langchain4j.anthropic.chat-model.model-name",
+            "quarkus.langchain4j.mistralai.chat-model.model-name",
+            "quarkus.langchain4j.ollama.chat-model.model-id"
+    };
+
     public static ModelInfo detectCurrentModel(Config config) {
-
-        Optional<String> openaiApiKey = config.getOptionalValue("quarkus.langchain4j.openai.api-key", String.class);
-        Optional<String> openaiModelName = config.getOptionalValue("quarkus.langchain4j.openai.chat-model.model-name", String.class);
-        if (openaiApiKey.isPresent() && openaiModelName.isPresent()) {
-            return new ModelInfo("OpenAI", openaiModelName.get(), "External API");
-        }
-
-        Optional<String> ollamaBaseUrl = config.getOptionalValue("quarkus.langchain4j.ollama.base-url", String.class);
-        Optional<String> ollamaModelId = config.getOptionalValue("quarkus.langchain4j.ollama.chat-model.model-id", String.class);
-        if (ollamaBaseUrl.isPresent() && ollamaModelId.isPresent()) {
-            return new ModelInfo("Ollama", ollamaModelId.get(),
-                    ollamaBaseUrl.orElse("http://localhost:11434"));
-        }
-
-        Optional<String> anthropicApiKey = config.getOptionalValue("quarkus.langchain4j.anthropic.api-key", String.class);
-        Optional<String> anthropicModelName = config.getOptionalValue("quarkus.langchain4j.anthropic.chat-model.model-name", String.class);
-        if (anthropicApiKey.isPresent() && anthropicModelName.isPresent()) {
-            return new ModelInfo("Anthropic", anthropicModelName.get(), "External API");
-        }
-
-        Optional<String> mistralApiKey = config.getOptionalValue("quarkus.langchain4j.mistralai.api-key", String.class);
-        Optional<String> mistralModelName = config.getOptionalValue("quarkus.langchain4j.mistralai.chat-model.model-name", String.class);
-        if (mistralApiKey.isPresent() && mistralModelName.isPresent()) {
-            return new ModelInfo("Mistral AI", mistralModelName.get(), "External API");
-        }
-
-        return new ModelInfo("Unknown", "Unknown", "Unknown");
+        return Stream.of(PROVIDER_MODEL_KEYS)
+                .map(modelKey -> createModelInfo(config, modelKey))
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElse(new ModelInfo("Unknown", "Unknown"));
     }
 
-    public record ModelInfo(String provider, String modelName, String endpoint) {
+    private static ModelInfo createModelInfo(Config config, String modelKey) {
+        return config.getOptionalValue(modelKey, String.class)
+                .map(option -> new ModelInfo(getProvider(modelKey), option))
+                .orElse(null);
+    }
+
+    private static String getProvider(String modelKey) {
+        Matcher matcher = Pattern.compile("quarkus\\.langchain4j\\.([a-z\\-]+)\\..*").matcher(modelKey);
+        if (matcher.matches()) {
+            return matcher.group(1);
+        }
+        return "";
+    }
+
+    public record ModelInfo(String provider, String modelName) {
         @Override
         public String toString() {
             return  (provider + "/" + modelName).toLowerCase();
