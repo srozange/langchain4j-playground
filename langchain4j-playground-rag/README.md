@@ -1,30 +1,30 @@
 # langchain4j-playground-rag
 
-## Use app
+## Using the application
 
-Put documents to ingest in : easy-rag-catalog/
+Place documents to ingest in: `easy-rag-catalog/`
 
-Start Ollama (if ```quarkus.langchain4j.ollama.base-url``` active) :
+Start Ollama (if `quarkus.langchain4j.ollama.base-url` is active):
 ```shell script
-ollama --serve
+ollama serve
 ```
 
-Run backend :
+Run the backend:
 ```shell script
 ./mvnw quarkus:dev
 ```
 
-Start web app :
+Start the web application:
 ```shell script
 cd ../langchain4j-playground-web
 ./mvnw quarkus:dev
 ```
 
-Ask a question via command line :
+Ask a question via command line:
 ```shell
-curl -X POST http://localhost:8080/api -H "Content-Type: text/plain" -d "How are you today ?"
+curl -X POST http://localhost:8080/api -H "Content-Type: text/plain" -d "How are you today?"
 ```
 
-Ask a question via UI : http://localhost:8082
+Access the UI to ask questions: http://localhost:8082
 
-Dashboard QDrant : http://localhost:32778/dashboard  (type ```docker ps``` to find port : eg. 0.0.0.0:32778->6333/tcp)
+QDrant Dashboard: http://localhost:32778/dashboard (use `docker ps` to find the port, e.g., 0.0.0.0:32778->6333/tcp)

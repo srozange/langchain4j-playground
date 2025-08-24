@@ -1,10 +1,10 @@
 # langchain4j-playground-web
 
-## Use app
+## Using the application
 
-Start web app :
+Start the web application:
 ```shell script
 ./mvnw quarkus:dev
 ```
 
-Ask a question via UI : http://localhost:8082
+Access the UI to ask questions: http://localhost:8082

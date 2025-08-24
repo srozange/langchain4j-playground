@@ -1,22 +1,22 @@
 # langchain4j-playground-mcp-client
 
-Set open ai api key in ```OPENAI_API_KEY```
+Set the OpenAI API key in `OPENAI_API_KEY` environment variable.
 
-Run coffee-app :
+Run the coffee application:
 ```bash
 cd ../langchain4j-playground-mcp-server/coffee-app
 docker compose up --force-recreate
 ```
 
-Run backend : 
+Run the backend:
 ```bash
 mvn quarkus:dev
 ```
 
-Start web app :
+Start the web application:
 ```shell script
 cd ../langchain4j-playground-web
 ./mvnw quarkus:dev
 ```
 
-Access chatui : http://localhost:8082
+Access the chat UI: http://localhost:8082

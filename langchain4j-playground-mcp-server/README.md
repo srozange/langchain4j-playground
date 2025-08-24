@@ -1,25 +1,25 @@
 # langchain4j-playground-mcp-server
 
-## mcp-server
+## MCP Server
 
-Création du jar dans target/ :
+Build the JAR in target/:
 ```bash
 mvn clean package
 ```
 
-## coffe-app
+## Coffee App
 
-Lancement de l'appli (http://localhost:8081) :
+Start the application (http://localhost:8081):
 ```bash
 cd coffee-app
 docker compose up --force-recreate
 ```
 
-## Claude desktop
+## Claude Desktop
 
-Dans le fichier claude_desktop_config.json :
+In the `claude_desktop_config.json` file:
 
-```xml
+```json
 {
   "mcpServers": {
     "favorite-coffee": {
