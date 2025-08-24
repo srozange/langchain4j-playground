@@ -1,4 +1,4 @@
-package org.theglump;
+package org.srozange.langchain4j;
 
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;

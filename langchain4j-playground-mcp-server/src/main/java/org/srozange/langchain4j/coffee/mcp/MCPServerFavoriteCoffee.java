@@ -1,8 +1,8 @@
-package org.theglump.coffee.mcp;
+package org.srozange.langchain4j.coffee.mcp;
 
-import org.theglump.coffee.mcp.entity.BeanRatingRequest;
-import org.theglump.coffee.mcp.entity.CoffeeBean;
-import org.theglump.coffee.mcp.entity.CoffeeBeanRating;
+import org.srozange.langchain4j.coffee.mcp.entity.BeanRatingRequest;
+import org.srozange.langchain4j.coffee.mcp.entity.CoffeeBean;
+import org.srozange.langchain4j.coffee.mcp.entity.CoffeeBeanRating;
 import io.quarkiverse.mcp.server.Tool;
 import io.quarkiverse.mcp.server.ToolArg;
 import io.quarkus.logging.Log;

@@ -1,4 +1,4 @@
-package org.theglump.coffee.mcp.entity;
+package org.srozange.langchain4j.coffee.mcp.entity;
 
 import java.util.HashSet;
 import java.util.Set;

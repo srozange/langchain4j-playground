@@ -1,4 +1,4 @@
-package org.theglump;
+package org.srozange.langchain4j;
 
 import org.eclipse.microprofile.config.Config;
 import java.util.Optional;

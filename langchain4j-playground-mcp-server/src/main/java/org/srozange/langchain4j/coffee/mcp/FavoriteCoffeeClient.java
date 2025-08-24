@@ -1,8 +1,8 @@
-package org.theglump.coffee.mcp;
+package org.srozange.langchain4j.coffee.mcp;
 
-import org.theglump.coffee.mcp.entity.BeanRatingRequest;
-import org.theglump.coffee.mcp.entity.CoffeeBean;
-import org.theglump.coffee.mcp.entity.CoffeeBeanRating;
+import org.srozange.langchain4j.coffee.mcp.entity.BeanRatingRequest;
+import org.srozange.langchain4j.coffee.mcp.entity.CoffeeBean;
+import org.srozange.langchain4j.coffee.mcp.entity.CoffeeBeanRating;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;

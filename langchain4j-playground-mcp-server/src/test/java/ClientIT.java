@@ -1,6 +1,6 @@
-import org.theglump.coffee.mcp.MCPServerFavoriteCoffee;
-import org.theglump.coffee.mcp.entity.CoffeeBean;
-import org.theglump.coffee.mcp.entity.CoffeeBeanRating;
+import org.srozange.langchain4j.coffee.mcp.MCPServerFavoriteCoffee;
+import org.srozange.langchain4j.coffee.mcp.entity.CoffeeBean;
+import org.srozange.langchain4j.coffee.mcp.entity.CoffeeBeanRating;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.Test;

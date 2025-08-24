@@ -1,4 +1,4 @@
-package org.theglump;
+package org.srozange.langchain4j;
 
 import io.mvnpm.importmap.Aggregator;
 import jakarta.annotation.PostConstruct;

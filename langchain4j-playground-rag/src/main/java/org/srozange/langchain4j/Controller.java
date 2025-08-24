@@ -1,4 +1,4 @@
-package org.theglump;
+package org.srozange.langchain4j;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.POST;

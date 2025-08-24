@@ -1,4 +1,4 @@
-package org.theglump;
+package org.srozange.langchain4j;
 
 import io.quarkus.websockets.next.OnOpen;
 import io.quarkus.websockets.next.OnTextMessage;
