@@ -4,4 +4,5 @@
 - [MCP (server)](./langchain4j-playground-mcp-server/README.md)
 - [MCP (client)](./langchain4j-playground-mcp-client/README.md)
 - [A2A (Agent-to-Agent)](./langchain4j-playground-a2a/README.md)
+- [Tools](./langchain4j-playground-tools/README.md)
 - [Web UI](./langchain4j-playground-web/README.md)

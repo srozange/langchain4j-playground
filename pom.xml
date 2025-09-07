@@ -26,6 +26,7 @@
         <module>langchain4j-playground-mcp-client</module>
         <module>langchain4j-playground-common</module>
         <module>langchain4j-playground-a2a</module>
+        <module>langchain4j-playground-tools</module>
     </modules>
 
     <dependencyManagement>

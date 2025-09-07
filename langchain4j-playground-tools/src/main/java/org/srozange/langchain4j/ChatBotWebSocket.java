@@ -3,9 +3,7 @@ package org.srozange.langchain4j;
 import io.quarkus.websockets.next.OnOpen;
 import io.quarkus.websockets.next.OnTextMessage;
 import io.quarkus.websockets.next.WebSocket;
-import org.commonmark.node.Node;
-import org.commonmark.parser.Parser;
-import org.commonmark.renderer.html.HtmlRenderer;
+import io.quarkus.websockets.next.WebSocketConnection;
 import org.eclipse.microprofile.config.ConfigProvider;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
@@ -24,7 +22,7 @@ public class ChatBotWebSocket {
     }
 
     @OnTextMessage
-    public String onMessage(String message) {
-        return ChatUtils.computeChatResponse(message, bot::chat);
+    public String onMessage(String message, WebSocketConnection connection) {
+        return ChatUtils.computeChatResponse(message, (msg) -> bot.chat(connection.id(), msg));
     }
 }
