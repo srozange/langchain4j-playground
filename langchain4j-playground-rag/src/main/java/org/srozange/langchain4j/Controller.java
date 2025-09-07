@@ -15,7 +15,7 @@ public class Controller {
     @POST
     @Produces(MediaType.TEXT_PLAIN)
     public String chat(String q) {
-        return bot.chat(q);
+        return bot.chat(q, "1");
     }
 
 }
