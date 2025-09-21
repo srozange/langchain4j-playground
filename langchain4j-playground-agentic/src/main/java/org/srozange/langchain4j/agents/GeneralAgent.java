@@ -10,7 +10,7 @@ public interface GeneralAgent {
     @UserMessage("""
                         You are a general agent.
                         Always include in your answer that you are a general agent.
-                        Answer french.
+                        Answer in french.
                         Answer the question {{request}}
                         """)
     String invoke(@V("request") String request);
