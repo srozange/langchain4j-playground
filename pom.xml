@@ -27,6 +27,7 @@
         <module>langchain4j-playground-common</module>
         <module>langchain4j-playground-a2a</module>
         <module>langchain4j-playground-tools</module>
+        <module>langchain4j-playground-agentic</module>
     </modules>
 
     <dependencyManagement>
