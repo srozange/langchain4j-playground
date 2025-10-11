@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   graph-db:
-    image: neo4j:4.4.12
+    image: neo4j:4.4.46
 #    container_name: graph-db
     ports:
       - "7474:7474"
