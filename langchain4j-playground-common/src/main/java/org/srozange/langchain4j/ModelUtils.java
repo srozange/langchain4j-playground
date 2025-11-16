@@ -1,6 +1,7 @@
 package org.srozange.langchain4j;
 
 import org.eclipse.microprofile.config.Config;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -21,12 +22,12 @@ public class ModelUtils {
                 .map(modelKey -> createModelInfo(config, modelKey))
                 .filter(Objects::nonNull)
                 .findFirst()
-                .orElse(new ModelInfo("Unknown", "Unknown"));
+                .orElse(new ModelInfo("Unknown", "Unknown", config.getValue("quarkus.application.name", String.class)));
     }
 
     private static ModelInfo createModelInfo(Config config, String modelKey) {
         return config.getOptionalValue(modelKey, String.class)
-                .map(option -> new ModelInfo(getProvider(modelKey), option))
+                .map(option -> new ModelInfo(getProvider(modelKey), option, config.getValue("quarkus.application.name", String.class)))
                 .orElse(null);
     }
 
@@ -38,10 +39,10 @@ public class ModelUtils {
         return "";
     }
 
-    public record ModelInfo(String provider, String modelName) {
+    public record ModelInfo(String provider, String modelName, String appName) {
         @Override
         public String toString() {
-            return  (provider + "/" + modelName).toLowerCase();
+            return  (provider + "/" + modelName).toLowerCase() + " - " + appName;
         }
     }
 }
