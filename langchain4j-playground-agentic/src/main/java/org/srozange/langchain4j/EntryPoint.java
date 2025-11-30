@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class EntryPoint {
 
-    private static final ChatModel CHAT_MODEL = createChatModel(false);
+    private static final ChatModel CHAT_MODEL = createChatModel(true);
 
     public static void main(String[] args) {
 

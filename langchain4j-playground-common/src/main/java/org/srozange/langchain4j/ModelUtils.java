@@ -14,7 +14,8 @@ public class ModelUtils {
             "quarkus.langchain4j.openai.chat-model.model-name",
             "quarkus.langchain4j.anthropic.chat-model.model-name",
             "quarkus.langchain4j.mistralai.chat-model.model-name",
-            "quarkus.langchain4j.ollama.chat-model.model-id"
+            "quarkus.langchain4j.ollama.chat-model.model-id",
+            "quarkus.langchain4j.ai.gemini.chat-model.model-id"
     };
 
     public static ModelInfo detectCurrentModel(Config config) {
@@ -32,7 +33,7 @@ public class ModelUtils {
     }
 
     private static String getProvider(String modelKey) {
-        Matcher matcher = Pattern.compile("quarkus\\.langchain4j\\.([a-z\\-]+)\\..*").matcher(modelKey);
+        Matcher matcher = Pattern.compile("quarkus\\.langchain4j\\.([a-z\\-\\.]+)\\.chat-model.*").matcher(modelKey);
         if (matcher.matches()) {
             return matcher.group(1);
         }
