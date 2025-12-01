@@ -33,4 +33,10 @@ public class ChatUtils {
         double seconds = durationInSeconds % 60;
         return "<p><i style='font-size:12px'>Temps écoulé : " + minutes + " min " + String.format("%.0f", seconds) + " sec</i></p>";
     }
+
+    public static String computeToolExecutedEvent(dev.langchain4j.observability.api.event.ToolExecutedEvent toolExecutedEvent) {
+        return "<i style=\"color: blueviolet;\">Tool called :<ul><li>name : " + toolExecutedEvent.request().name()
+                + "</li><li>arguments : " + toolExecutedEvent.request().arguments()
+                + "</li><li>result : " + toolExecutedEvent.resultText() + "</li></ul></i>";
+    }
 }

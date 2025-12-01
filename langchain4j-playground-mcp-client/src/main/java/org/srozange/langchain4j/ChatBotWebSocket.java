@@ -1,9 +1,12 @@
 package org.srozange.langchain4j;
 
+import dev.langchain4j.observability.api.event.ToolExecutedEvent;
+import io.quarkiverse.langchain4j.observability.AiServiceSelector;
 import io.quarkus.websockets.next.OnOpen;
 import io.quarkus.websockets.next.OnTextMessage;
 import io.quarkus.websockets.next.WebSocket;
 import io.quarkus.websockets.next.WebSocketConnection;
+import jakarta.enterprise.event.Observes;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -15,8 +18,11 @@ public class ChatBotWebSocket {
 
     private final Bot bot;
 
-    public ChatBotWebSocket(Bot bot) {
+    private final WebSocketConnection connection;
+
+    public ChatBotWebSocket(Bot bot, WebSocketConnection connection) {
         this.bot = bot;
+        this.connection = connection;
     }
 
     @OnOpen
@@ -27,5 +33,9 @@ public class ChatBotWebSocket {
     @OnTextMessage
     public String onMessage(String message, WebSocketConnection connection) {
         return ChatUtils.computeChatResponse(message, (msg) -> bot.chat(connection.id(), msg));
+    }
+
+    public void botToolExecuted(@Observes @AiServiceSelector(Bot.class) ToolExecutedEvent toolExecutedEvent) {
+        connection.sendTextAndAwait(ChatUtils.computeToolExecutedEvent(toolExecutedEvent));
     }
 }

@@ -19,6 +19,10 @@
             <artifactId>commonmark</artifactId>
             <version>0.27.0</version>
         </dependency>
+        <dependency>
+            <groupId>io.quarkiverse.langchain4j</groupId>
+            <artifactId>quarkus-langchain4j-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build/>

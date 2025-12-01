@@ -34,8 +34,6 @@ public class ChatBotWebSocket {
     }
 
     public void botToolExecuted(@Observes @AiServiceSelector(Bot.class) ToolExecutedEvent toolExecutedEvent) {
-        connection.sendTextAndAwait("<i style=\"color: blueviolet;\">Tool called :<ul><li>name : " + toolExecutedEvent.request().name()
-                + "</li><li>arguments : " + toolExecutedEvent.request().arguments()
-                + "</li><li>result : " + toolExecutedEvent.resultText() + "</li></ul></i>");
-        }
+        connection.sendTextAndAwait(ChatUtils.computeToolExecutedEvent(toolExecutedEvent));
+    }
 }
