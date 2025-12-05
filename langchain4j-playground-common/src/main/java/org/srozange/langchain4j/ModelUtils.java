@@ -19,9 +19,11 @@ public class ModelUtils {
     };
 
     public static ModelInfo detectCurrentModel(Config config) {
+        java.util.Optional<String> provider = config.getOptionalValue("quarkus.langchain4j.chat-model.provider", String.class);
         return Stream.of(PROVIDER_MODEL_KEYS)
                 .map(modelKey -> createModelInfo(config, modelKey))
                 .filter(Objects::nonNull)
+                .filter(modelInfo -> provider.isPresent() && provider.get().equals(modelInfo.provider))
                 .findFirst()
                 .orElse(new ModelInfo("Unknown", "Unknown", config.getValue("quarkus.application.name", String.class)));
     }
