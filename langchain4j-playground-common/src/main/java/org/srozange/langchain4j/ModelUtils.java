@@ -23,7 +23,7 @@ public class ModelUtils {
         return Stream.of(PROVIDER_MODEL_KEYS)
                 .map(modelKey -> createModelInfo(config, modelKey))
                 .filter(Objects::nonNull)
-                .filter(modelInfo -> provider.isPresent() && provider.get().equals(modelInfo.provider))
+                .filter(modelInfo -> !provider.isPresent() || provider.get().equals(modelInfo.provider))
                 .findFirst()
                 .orElse(new ModelInfo("Unknown", "Unknown", config.getValue("quarkus.application.name", String.class)));
     }
