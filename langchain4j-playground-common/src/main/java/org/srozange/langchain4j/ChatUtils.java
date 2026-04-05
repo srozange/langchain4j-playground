@@ -1,5 +1,6 @@
 package org.srozange.langchain4j;
 
+import io.quarkus.runtime.util.StringUtil;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -37,6 +38,12 @@ public class ChatUtils {
     public static String computeToolExecutedEvent(dev.langchain4j.observability.api.event.ToolExecutedEvent toolExecutedEvent) {
         return "<i style=\"color: blueviolet;\">Tool called :<ul><li>name : " + toolExecutedEvent.request().name()
                 + "</li><li>arguments : " + toolExecutedEvent.request().arguments()
-                + "</li><li>result : " + toolExecutedEvent.resultText() + "</li></ul></i>";
+                + "</li><li>result : " + truncate(toolExecutedEvent.resultText(), 600) + "</li></ul></i>";
     }
+
+    private static String truncate(String str, int maxLength) {
+        if (str == null || str.length() <= maxLength) return str;
+        return str.substring(0, maxLength) + "...";
+    }
+
 }

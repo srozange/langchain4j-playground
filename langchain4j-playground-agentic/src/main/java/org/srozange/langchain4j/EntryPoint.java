@@ -68,7 +68,7 @@ public class EntryPoint {
         }
         return GoogleAiGeminiChatModel.builder()
                 .apiKey(System.getenv("GOOGLE_API_KEY"))
-                .modelName("gemini-2.0-flash")
+                .modelName("gemini-2.5-flash")
                 .build();
     }
 }
