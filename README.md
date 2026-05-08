@@ -7,3 +7,4 @@
 - [Tools](./langchain4j-playground-tools/README.md)
 - [Web UI](./langchain4j-playground-web/README.md)
 - [Agentic](./langchain4j-playground-agentic/README.md)
+- [Skills](./langchain4j-playground-skills/README.md)
