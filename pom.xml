@@ -29,6 +29,7 @@
         <module>langchain4j-playground-tools</module>
         <module>langchain4j-playground-skills</module>
         <module>langchain4j-playground-agentic</module>
+        <module>langchain4j-playground-observability</module>
     </modules>
 
     <dependencyManagement>
