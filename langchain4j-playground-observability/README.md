@@ -1,6 +1,6 @@
 # langchain4j-playground-observability
 
-## Mode par défaut — Grafana / Tempo (LGTM)
+## Default Mode — Grafana / Tempo (LGTM)
 
 Run the application:
 ```bash
@@ -16,46 +16,46 @@ The Grafana URL is printed in the startup logs:
 
 Navigate to: **Explore → Tempo → Search → Service Name: `langchain4j-observability`**
 
-### Dashboard tokens
+### Dashboard Tokens
 
-Importe [`grafana/token-usage-dashboard.json`](grafana/token-usage-dashboard.json) : **Dashboards → Import → Upload JSON file**, puis choisis la source **Prometheus**. Panneaux : tokens input/output/total, coût, et tokens/jour par type, modèle et sous-agent.
+Import [`grafana/token-usage-dashboard.json`](grafana/token-usage-dashboard.json): **Dashboards → Import → Upload JSON file**, then select **Prometheus** as the data source. Panels: input/output/total tokens, cost, and tokens/day by type, model, and sub-agent.
 
-## Mode Jaeger
+## Jaeger Mode
 
-Active un profil `jaeger` qui désactive le dev-service LGTM et exporte les traces vers un conteneur Jaeger local (OTLP natif).
+Activates a `jaeger` profile that disables the LGTM dev-service and exports traces to a local Jaeger container (native OTLP).
 
 ```bash
-# 1. Lancer Jaeger
+# 1. Start Jaeger
 docker compose up -d
-# 2. Lancer l'app sur le profil jaeger
+# 2. Run the app on the jaeger profile
 ./mvnw quarkus:dev -Dquarkus.profile=jaeger
-# 3. Poser une question, puis ouvrir l'UI Jaeger
+# 3. Ask a question, then open the Jaeger UI
 #    http://localhost:16686  →  Service: langchain4j-observability
 ```
 
-Sans `-Dquarkus.profile=jaeger`, le comportement par défaut (LGTM / Grafana) reste inchangé.
+Without `-Dquarkus.profile=jaeger`, the default behavior (LGTM / Grafana) remains unchanged.
 
-## Mode Langfuse (local, via Dev Service)
+## Langfuse Mode (local, via Dev Service)
 
-L'extension `quarkus-langfuse` (ajoutée seulement sous ce profil, via un profil Maven) démarre un **Langfuse local complet** et câble l'appli automatiquement — aucun compte, aucune clé.
+The `quarkus-langfuse` extension (added only under this profile via a Maven profile) starts a **complete local Langfuse** and wires the application automatically — no account, no key required.
 
 ```bash
-# Docker requis
+# Docker required
 ./mvnw quarkus:dev -Dquarkus.profile=langfuse
 ```
 
-L'URL du Langfuse local est affichée dans les logs (ex. `http://localhost:32807`, login `quarkus@quarkus.io` / `quarkuslangfuse`). Pose une question → la trace `expert-router.route` et ses 2 sous-agents y apparaissent.
+The local Langfuse URL is displayed in the logs (e.g., `http://localhost:32807`, login `quarkus@quarkus.io` / `quarkuslangfuse`). Ask a question → the `expert-router.route` trace and its 2 sub-agents appear there.
 
-## Conso de tokens (métriques)
+## Token Consumption (Metrics)
 
-quarkus-langchain4j émet automatiquement un compteur de tokens (rien à coder), exporté vers Prometheus/Mimir (LGTM) → visible en **mode par défaut**.
+quarkus-langchain4j automatically emits a token counter (nothing to code), exported to Prometheus/Mimir (LGTM) → visible in **default mode**.
 
-Métrique : `gen_ai_client_token_usage_total` — labels `gen_ai_token_type` (`input`/`output`), `gen_ai_request_model`, `ai_service_class_name` (par sous-agent). Aussi `gen_ai_client_estimated_cost_total` (coût).
+Metric: `gen_ai_client_token_usage_total` — labels `gen_ai_token_type` (`input`/`output`), `gen_ai_request_model`, `ai_service_class_name` (per sub-agent). Also `gen_ai_client_estimated_cost_total` (cost).
 
-PromQL (Grafana → Explore → source Prometheus) :
+PromQL (Grafana → Explore → Prometheus source):
 ```promql
-sum by (gen_ai_token_type) (increase(gen_ai_client_token_usage_total[1d]))   # tokens/jour
-sum(increase(gen_ai_client_estimated_cost_total[1d]))                        # coût/jour
+sum by (gen_ai_token_type) (increase(gen_ai_client_token_usage_total[1d]))   # tokens/day
+sum(increase(gen_ai_client_estimated_cost_total[1d]))                        # cost/day
 ```
 
-Le coût est à **0** par défaut : [`GeminiCostEstimator`](src/main/java/org/srozange/langchain4j/GeminiCostEstimator.java) fournit un tarif par token (indicatif, à ajuster). Dashboard prêt à l'emploi : voir [Dashboard tokens](#dashboard-tokens).
+The cost is **0** by default: [`GeminiCostEstimator`](src/main/java/org/srozange/langchain4j/GeminiCostEstimator.java) provides a price per token (indicative, to be adjusted). Dashboard ready to import.
