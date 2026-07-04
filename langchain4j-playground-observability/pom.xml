@@ -46,4 +46,31 @@
         </plugins>
     </build>
 
+    <profiles>
+        <!--
+          L'extension quarkus-langfuse exige quarkus.langfuse.base-url/public-key/secret-key
+          (propriétés requises) : la garder sur le classpath en permanence casserait le démarrage
+          en mode défaut/jaeger. On l'ajoute donc uniquement quand le profil Quarkus 'langfuse'
+          est actif, via ce profil Maven auto-activé par -Dquarkus.profile=langfuse.
+          Lancement : ./mvnw quarkus:dev -Dquarkus.profile=langfuse
+        -->
+        <profile>
+            <id>langfuse</id>
+            <activation>
+                <property>
+                    <name>quarkus.profile</name>
+                    <value>langfuse</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>io.quarkiverse.langfuse</groupId>
+                    <artifactId>quarkus-langfuse</artifactId>
+                    <!-- Non géré par un BOM : version explicite -->
+                    <version>0.3.1</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
 </project>
