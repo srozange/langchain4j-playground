@@ -4,9 +4,10 @@ import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
 import io.quarkiverse.langchain4j.RegisterAiService;
 import jakarta.enterprise.context.ApplicationScoped;
+import org.srozange.langchain4j.tools.ElapsedTimeTool;
 
 @ApplicationScoped
-@RegisterAiService
+@RegisterAiService(tools = ElapsedTimeTool.class)
 public interface MathExpertAgent {
 
     @UserMessage("""
